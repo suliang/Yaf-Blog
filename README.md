@@ -12,7 +12,7 @@
 <br><br>第一次学习Yaf框架，很多功能都是摸索着来的，所以此项目必有纰漏。
 第一次用github提交（之前都是浏览别人的项目），所以github的功能也是摸索着来的。
 <hr>
-
+<pre>
 + public
   |- index.php //入口文件
   |- index_forp.php //性能测试入库
@@ -40,3 +40,4 @@
   |+ cache  //模板生成的缓存文件
   |+ composer         //composer下载的lib
      |- composer.json //composer的依赖配置
+	 </pre>
