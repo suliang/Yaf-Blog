@@ -1,5 +1,5 @@
 # Blog_by_Yaf
-The fastest blog system by the fastest framework
+由最快的PHP框架--Yaf打造而成的更快的博客系统----程序喵的博客
 
 现在很多网站都提供博客 
 比如CSDN 51CTO和博客园 CSDN巨卡 
