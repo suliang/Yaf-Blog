@@ -1,5 +1,5 @@
 <h1>Yaf博客系统</h1>
-<h4>由最快的PHP框架--Yaf打造而成的更快的----<a href="http://www.programcat.com">程序喵的博客</a></h4> 
+<h4>由最快的PHP框架--Yaf打造而成的更快的----<a target="_blank" href="http://www.programcat.com">程序喵的博客</a></h4> 
 <hr>
 <h6>本项目适合新手学习Yaf框架。老鸟请轻喷</h6>
 <h3>为什么要写这个项目？</h3>
@@ -9,9 +9,9 @@
 太卡（里面很多地方调google的文件，要 一 一 替换掉，不然卡死你），然后太大太臃肿，很多功能我都用不到，这不符合我喜欢DIY的性格。
 <h5>为什么选择Yaf框架？</h5>
 到底是用最近火热的Laravel或者Symfony，亦或是鸟哥的Yaf，还是用我最熟悉的CodeIgniter，前三者都有学习成本，最后想了想，这次追求的是快，那就用最快的PHP框架-----Yaf，来搭建一个更快的Blog系统。
-<br>开始用Yaf以后，才发现，它就是我要的那个框架！他不喜欢慢！他快如闪电。他没有臃肿的类库与功能，他简约而不简单。Yaf，简直就是为本博客量身打造的。更多Yaf优点详见Yaf优点
+<br>开始用Yaf以后，才发现，它就是我要的那个框架！他不喜欢慢！他快如闪电。他没有臃肿的类库与功能，他简约而不简单。Yaf，简直就是为本博客量身打造的。<a target="_blank" href="http://www.laruence.com/manual/yaf.advantages.html">更多Yaf优点详见请点击。</a>
 <br><br>第一次学习Yaf框架，很多功能都是摸索着来的，所以此项目必有纰漏。
-第一次用github提交（之前都是浏览别人的项目），所以github的功能也是摸索着来的。
+第一次用Github提交（之前都是浏览别人的项目），所以Github的功能也是摸索着来的。
 <hr>
 <h3>涉及的插件、技术</h3>
 <li>代码高亮插件--Prism</li>
@@ -72,9 +72,9 @@
      .......
      |- Search.php          //搜索引擎类   
   |+ library    
-     |- Db.php              //数据库类 mysqli  
+     |- Db.php              //数据库类 我网上找的然后改造的mysqli  
      |- Function.php        //方法类，里面继承了一些可以全局调用的方法  
-     |- Imagecompress.php   //图片压缩类  
+     |- Imagecompress.php   //图片压缩类 压缩说说里上传的图片 
      |- Rdb.php             //Redis类   
   |- Bootstrap.php          //项目的全局启动文件，里面启动了redis mysql 加载方法类
 - csft.conf                 //Sphinx-coreseek配置文件
@@ -87,3 +87,6 @@
 为了使它更快，我后期还要做两件事
 <li>首页和详情页做nginx的proxy_cache缓存</li>
 <li>首页和详情页，生成静态html页面</li>
+
+<h3>Last</h3>
+感谢Yaf群里的群友在我用Yaf遇到问题是为我指点迷津
