@@ -12,3 +12,31 @@
 <br><br>第一次学习Yaf框架，很多功能都是摸索着来的，所以此项目必有纰漏。
 第一次用github提交（之前都是浏览别人的项目），所以github的功能也是摸索着来的。
 <hr>
+
++ public
+  |- index.php //入口文件
+  |- index_forp.php //性能测试入库
+  |- .htaccess //重写规则
+  |- favicon.jpg
+  |+ css
+  |+ images
+  |+ js
++ conf
+  |- application.ini //配置文件
++ application
+  |+ controllers
+     |- Index.php //默认控制器
+  |+ views    
+     |+ index   //控制器
+     |- index.phtml //默认视图
+  |- Bootstrap.php //项目的全局配置,包括路由和memcached的配置等
+  |- yaf_classes.php //yaf框架的函数列表,方便补全
++ modules //其他模块
++ library //本地类库
++ models  //model目录
++ plugins //插件目录
++ tests   //测试目录
++ globals   //插件目录和全局配置
+  |+ cache  //模板生成的缓存文件
+  |+ composer         //composer下载的lib
+     |- composer.json //composer的依赖配置
