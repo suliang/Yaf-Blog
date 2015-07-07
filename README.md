@@ -22,31 +22,48 @@
 <li>缓存层用的Redis</li>
 <h5>目录结构</h5>
 <pre>
-+ public
-  |- index.php //入口文件
-  |- index_forp.php //性能测试入库
-  |- .htaccess //重写规则
-  |- favicon.jpg
-  |+ css
-  |+ images
-  |+ js
+- index.php             //入口文件 定义常量BASE_URL
+- favicon.ico
++ public                //公共静态资源
+  |- css
+  |- images      
+  |- js
+  |- ueditor   
 + conf
-  |- application.ini //配置文件
+  |- application.ini    //配置文件
 + application
   |+ controllers
-     |- Index.php //默认控制器
+     |- Index.php       //默认控制器
+     |- Blog.php        
+     |- Blogtype.php    
+     |- Cat.php         //综合信息控制器
+     |- Comment.php     
+     |- Error.php       //错误处理控制器
+     |- Admin.php       //后台控制器
+     |- Link.php        
+     |- Say.php         
+     |- Tag.php         
+     |- Test.php        //测试专用控制器
   |+ views    
-     |+ index   //控制器
-     |- index.phtml //默认视图
-  |- Bootstrap.php //项目的全局配置,包括路由和memcached的配置等
-  |- yaf_classes.php //yaf框架的函数列表,方便补全
-+ modules //其他模块
-+ library //本地类库
-+ models  //model目录
-+ plugins //插件目录
-+ tests   //测试目录
-+ globals   //插件目录和全局配置
-  |+ cache  //模板生成的缓存文件
-  |+ composer         //composer下载的lib
-     |- composer.json //composer的依赖配置
-	 </pre>
+     |+ index   
+     ...... 
+     |+ test   
+     |+ public 
+        |- 404.php   
+        |- foot.php   
+        |- head.php   
+        |- right.php   
+  |+ models    
+     .......
+     |- Search.php          //搜索引擎类   
+  |+ library    
+     |- Db.php              //数据库类 mysqli  
+     |- Function.php        //方法类，里面继承了一些可以全局调用的方法  
+     |- Imagecompress.php   //图片压缩类  
+     |- Rdb.php             //Redis类   
+  |- Bootstrap.php          //项目的全局启动文件，里面启动了redis mysql 加载方法类
+- csft.php                  //Sphinx-coreseek配置文件
+- vhost.conf                //nginx虚拟主机配置文件
+- blog.sql                  //数据库文件
+
+</pre>
