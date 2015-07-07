@@ -1,5 +1,5 @@
 <h1>Yaf博客系统</h1>
-<h4>由最快的PHP框架--Yaf打造而成的更快的----<a href="www.programcat.com">程序喵的博客</a></h4> 
+<h4>由最快的PHP框架--Yaf打造而成的更快的----<a href="http://www.programcat.com">程序喵的博客</a></h4> 
 <hr>
 <h6>本项目适合新手学习Yaf框架。老鸟请轻喷</h6>
 <h3>为什么要写这个项目？</h3>
