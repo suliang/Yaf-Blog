@@ -12,6 +12,15 @@
 <br><br>第一次学习Yaf框架，很多功能都是摸索着来的，所以此项目必有纰漏。
 第一次用github提交（之前都是浏览别人的项目），所以github的功能也是摸索着来的。
 <hr>
+<h3>涉及的插件、技术</h3>
+<h5>前端</h5>
+<li>详情页使用代码高亮插件--Prism</li>
+<li>后台新增博客的页面，改造富文本编辑器Ueditor使其代码格式和Prism一致</li>
+<li>碎片（说说）页面，ajaxform插件用于不刷新传图</li>
+<h5>后端</h5>
+<li>全站搜索模块用的是Sphinx-coreseek</li>
+<li>缓存层用的Redis</li>
+<h5>目录结构</h5>
 <pre>
 + public
   |- index.php //入口文件
