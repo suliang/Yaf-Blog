@@ -1,0 +1,39 @@
+body {padding: 0; margin: 0 auto;background-color: #85ADF3;}
+body,html{height: 100%;width:100%;}
+.H {margin: 0 auto;}
+.red{background-color: red;  }
+.blue{background-color: blue;}
+.green{background-color: green;}
+.yellow{background-color: yellow;}
+.h70{height:70px;}
+.h110{height:110px;}
+.h800{height:800px;}
+.h900{height:900px;}
+.w300{width:900px;}
+.title{font-size: 36px;}
+.daohang{
+    margin-top: 4px;
+    height:25px;
+}
+
+.main_right {
+    float:left;
+    margin-left:70px;
+    width:20%;
+}
+.main_blog {
+    width:75%;
+    
+    float:left;
+}
+.main {
+    padding: 30px;
+    margin:0 auto;
+    width:86%;
+    height:800px;
+    background-color: black;
+}
+
+.blog {
+	font-size:24px;
+}
