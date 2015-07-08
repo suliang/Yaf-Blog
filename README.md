@@ -4,7 +4,7 @@
 <h6>本项目适合新手学习Yaf框架。老鸟请轻喷</h6>
 <h3>项目架构</h3>
 <li>Linux+Nginx+PHP+MySQL+Redis</li>
-<h3>涉及的插件、技术</h3>
+<h3>涉及的插件、扩展</h3>
 <li>代码高亮插件--Prism</li>
 <li>为Prism改造Ueditor</li>
 <li>ajaxform</li>
