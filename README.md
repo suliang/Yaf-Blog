@@ -2,6 +2,14 @@
 <h4>由最快的PHP框架--Yaf打造而成的更快的----<a target="_blank" href="http://www.programcat.com">程序喵的博客</a></h4> 
 <hr>
 <h6>本项目适合新手学习Yaf框架。老鸟请轻喷</h6>
+<h3>项目架构</h3>
+<li>Linux+Nginx+PHP+MySQL+Redis</li>
+<h3>涉及的插件、技术</h3>
+<li>代码高亮插件--Prism</li>
+<li>为Prism改造Ueditor</li>
+<li>ajaxform</li>
+<li>全站搜索Sphinx-coreseek</li>
+<li>PHP框架--Yaf</li>
 <h3>为什么要写这个项目？</h3>
 起先，我的博客放在CSDN上，那里面技术博客众多，可是后来感觉CSDN的服务器太卡，有时候打开一个博客要半分钟。
 简直不能忍啊。于是改投博客园，博客园服务器还算稳定，但是在博客园上写博客，感觉他后台的功能用着不顺手，比较反人类，遂决定自己搭一个博客系统。
@@ -13,12 +21,6 @@
 <br><br>第一次学习Yaf框架，很多功能都是摸索着来的，所以此项目必有纰漏。
 第一次用Github提交（之前都是浏览别人的项目），所以Github的功能也是摸索着来的。
 <hr>
-<h3>涉及的插件、技术</h3>
-<li>代码高亮插件--Prism</li>
-<li>为Prism改造Ueditor</li>
-<li>ajaxform</li>
-<li>全站搜索Sphinx-coreseek</li>
-<li>Redis</li>
 
 <h3>项目特色</h3>
 <h5>快如闪电和安全。</h5>
