@@ -36,6 +36,7 @@
 1.请确保你的机器已经安装了PHP、Nginx、Mysql、Redis、Coreseek
 2.导入sql文件blog.sql，替换Coreseek的配置文件csft.conf并修改数据库配置，替换虚拟主机文件vhost.conf并修改配置，
 3.重启webserver
+4.后台登陆地址为【点击首页顶部的白色猫头，会弹出登录窗口，默认登陆密码123456】
 </pre>
 <h5>目录结构</h5>
 <pre>
