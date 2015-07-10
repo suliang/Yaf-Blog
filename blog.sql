@@ -143,7 +143,7 @@ CREATE TABLE `test` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `cat` VALUES ('1', 'login', '******', '0', '登陆验证 value是md5(md5(password)+name)');
+INSERT INTO `cat` VALUES ('1', 'login', '6d253d7e5955a36e0213b6f6957b788d', '0', '登陆验证 value是md5(md5(password)+name)');
 INSERT INTO `cat` VALUES ('2', 'site_back', 'xxxxxx', '0', '网站备案号');
 INSERT INTO `cat` VALUES ('3', 'site_title', 'xxxxxx', '0', '网站名称');
 INSERT INTO `cat` VALUES ('4', 'site_keywords', 'xxxxxx', '0', '网站关键词');
