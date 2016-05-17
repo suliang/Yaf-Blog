@@ -54,16 +54,23 @@ class CommentController extends Yaf_Controller_Abstract {
 		return true;
 	}
 
+    /**
+     * 管理员评论
+     * @return bool
+     */
 	public function ajax_addupdatecommentAction()
 	{
 		$id = $this->getRequest()->getpost("id");
 		$type = $this->getRequest()->getpost("type");
 		$content = $this->getRequest()->getpost("value");
 		$blogid = $this->getRequest()->getpost("blogid");
+		$email = $this->getRequest()->getpost("email");
 
 		if($type == 'add')
 		{
 			$result = $this->commentmodel->addcomment($content,$blogid,$id);
+
+            $this->push_mail_list($blogid, $email, $content,false);
 		}
 		else
 		{
@@ -134,14 +141,18 @@ class CommentController extends Yaf_Controller_Abstract {
             $blogid = (int)$this->getRequest()->getpost("blogid");
             $content = $this->getRequest()->getpost("content");
             $nickname = $this->getRequest()->getpost("nickname");
+            $email = $this->getRequest()->getpost("email");
+
             if($blogid >= 0 && $content && $nickname)
             {
                 $content = htmlspecialchars($content);
                 $nickname = htmlspecialchars($nickname);
-                $result = $this->commentmodel->addcomment($content,$blogid,0,$nickname);
+                $result = $this->commentmodel->addcomment($content,$blogid,0,$email,$nickname);
                 if($result)
                 {
                     $data = array('status'=>1,'info'=>array('content'=>'成功'));
+                    //写入队列
+                    $this->push_mail_list($blogid, $email,$content);
                 }
                 else
                 {
@@ -158,5 +169,35 @@ class CommentController extends Yaf_Controller_Abstract {
         return false;
 
 	}
+
+
+    /**
+     * 把评论放进待发送邮件的redis队列
+     * @param $email
+     * @param int $blogid 博文id
+     * @param string $title blog标题
+     * @param string $content   评论内容
+     */
+    private function push_mail_list($blogid = 0, $email = '',$content = '',$guest = true)
+    {
+        if($content)
+        {
+            if($guest)
+            {
+                $title = "您的博客有新评论^_^";
+                $content = "您的博客收到新评论<br /><br />".$content."<br><br /><a href='".BASE_URL."index/info/id/".$blogid."'>点击查看详情</a>";
+                $config = new Yaf_Config_Ini('./conf/application.ini', 'common');
+                $email = $config->mail->replyemail;
+            }
+            else
+            {
+                $content = "您好，你在【程序喵的厨房】博客中收到了新的回复：<br /><br />".$content."<br /><br /><a href='".BASE_URL."index/info/id/".$blogid."'>点击查看详情</a>";
+                $title = "您的评论有新回复^_^程序喵的厨房";
+            }
+            $this->commentmodel->push_mail_list($email,$title,$content);
+            return false;
+        }
+    }
+
 
 }

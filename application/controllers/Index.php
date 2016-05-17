@@ -179,7 +179,7 @@ class IndexController extends Yaf_Controller_Abstract {
         {
             return false;
         }
-        $title = $this->getRequest()->getpost("title");
+        $title = htmlspecialchars($this->getRequest()->getpost("title"));
         $url = htmlspecialchars($this->getRequest()->getpost("url"));
         if(strpos($url,"http") === false)
         {

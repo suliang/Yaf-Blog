@@ -54,7 +54,7 @@ class SayController extends Yaf_Controller_Abstract {
         $img3?$imgarr[]=$img3:'';
 
         $imgstr = empty($imgarr)?'':json_encode($imgarr);
-        $sayid = $this->saymodel->addsay($content,$imgstr);
+        $sayid = $this->saymodel->addsay(htmlspecialchars($content),$imgstr);
 
         if($sayid > 0)
         {
