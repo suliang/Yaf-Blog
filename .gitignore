@@ -1,6 +1,3 @@
-/application/config/config.php
-/application/config/database.php
-/ci
-/sftp-config.json
-/app.sand.conf
-/export2svn
+/.svn
+/wb_2b742f43c7b74de4.txt
+/.gitignore
