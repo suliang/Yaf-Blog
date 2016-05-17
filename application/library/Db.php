@@ -1,13 +1,17 @@
 <?php
 
+/**
+ *
+ * Class Db
+ */
 Class Db
 {
 
-	private $link;
-	private $handle;
-	private $is_log;
-	private $time;
-	private $trans;
+	private $link;      //mysqli资源句柄
+	private $trans;     //事务
+    private $handle;    //日志文件资源句柄
+    private $is_log;    //是否记录日志
+    private $time;      //时间戳
 
 	//构造函数
 	public function __construct($db_config)

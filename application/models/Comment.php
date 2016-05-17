@@ -81,7 +81,7 @@ class CommentModel
         return $this->db->get_one($sql,'c');
     }
 
-    public function addcomment($content,$blogid,$replyid = 0,$nickname = '')
+    public function addcomment($content,$blogid,$replyid = 0,$email = '',$nickname = '')
     {
         $this->redis->remove(__CLASS__);
         if(!$nickname)
@@ -92,7 +92,7 @@ class CommentModel
         }
         else
         {
-            $data = ['replyid'=>$replyid,'content'=>$content,'nickname'=>$nickname,'blogid'=>$blogid];
+            $data = ['replyid'=>$replyid,'content'=>$content,'nickname'=>$nickname,'email'=>$email,'blogid'=>$blogid];
             return $this->db->safeinsert('comment',$data);
         }
 
@@ -148,6 +148,43 @@ class CommentModel
             }
             return true;
         }
+    }
+
+    /**
+     * 把待发送邮件推入邮件list
+     * @param $email
+     * @param $content
+     */
+    public function push_mail_list($email,$title,$content)
+    {
+        $key = cachekey('mail_list');
+        $mailinfo = serialize(['email'=>$email,'title'=>$title,'content'=>$content]);
+        $this->redis->rpush($key,$mailinfo);
+    }
+
+    /**
+     * 取出待发送邮件，准备发送
+     * （服务器比较渣，所以一次取3封，从最早的开始取）
+     * @param int $num
+     */
+    public function get_mail_tosend($num = 3)
+    {
+        $key = cachekey('mail_list');
+        $maillist = [];
+        for($i = 0; $i < $num; $i++)
+        {
+            $mail =  $this->redis->lpop($key);
+            if($mail)
+            {
+                $maillist[] = unserialize($mail);
+            }
+            else
+            {
+                break;
+            }
+        }
+        return $maillist;
+
     }
 
 }

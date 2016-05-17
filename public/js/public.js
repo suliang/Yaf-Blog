@@ -33,12 +33,13 @@ $(function() {
         //电脑浏览器
         $(".pages").css('font-size','15px')
     	//$("#content").css("min-height",800);//为了footer贴边
-    	$("body").css("min-width",1280)
-    	$("header").css("min-width",1000)
+    	$("body").css("min-width",900)
+    	$("header").css("min-width",900)
     }
 
 	//当分辨率比较低的时候 去掉program.cat 不然管理员模式会溢出
-	if($(window).width()<=1601){
+    var width = $(window).width();
+	if(width<=1601){
 		$("#top2").remove()
 	}
 	if($("#blog").height()<=521){
@@ -51,6 +52,22 @@ $(function() {
 	var saycontentwidth = $(".commentlist").width()-150
 	$(".saycontent").width(saycontentwidth)
 
+    $(".blogtitle").each(function(){
+        var blogtitlewidth = $(this).width()
+
+        var atitle = $(this).prev().width();
+        var ctime = $(this).next().width();
+        var lcoult = $(this).next().next().width();
+        var pwidth = $(this).parent().width();
+        var shengyu = pwidth-lcoult-ctime-atitle;
+        var limitwidth = shengyu-blogtitlewidth;
+        var tmlwidth = shengyu-111;
+        if(limitwidth < 111)
+        {
+            $(this).attr("style",'white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;width:'+tmlwidth+'px;')
+        }
+
+    })
 	
     //修复手机浏览器下顶部不贴边
     $(document).bind('scroll',function(){
@@ -185,6 +202,7 @@ $(function() {
 	$("#post_comment").on('click',function(){
 		var content = $("#comment_textarea").val()
 		var nickname = $("#nickname").val()
+        var email = $("#email").val()
 		var blogid = $("#blogid").val()
 		var lastfloor = $(".floor:last").text()
 		if(!lastfloor)
@@ -194,9 +212,14 @@ $(function() {
 			alert('内容和昵称不能为空')
 			return false;
 		}
+        if(!email || email.indexOf('@') < 0)
+        {
+            alert('请填写邮箱，用于管理员回复您的评论。邮箱不会出现在本页面')
+            return false;
+        }
 		$.post(
 			BASE_URL+"comment/ajax_addcomment", 
-			{ "blogid": blogid, "content":content, "nickname":nickname },
+			{ "blogid": blogid, "content":content, "nickname":nickname, "email":email },
 			function(data){
 				if(data.status == 1)
 				{

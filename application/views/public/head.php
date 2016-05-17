@@ -9,10 +9,10 @@
         var BASE_URL = "<?=BASE_URL?>"
         var admin = <?php if($admin){echo 'true';}else{echo 'false';}?>
     </script>
-    <link rel="stylesheet" href="<?=BASE_URL?>public/css/public.css" type="text/css">
+    <link rel="stylesheet" href="<?=STATIC_PUBLIC?>public/css/public.css" type="text/css">
     <!--<script type="text/javascript" src="<?=BASE_URL?>public/js/jquery-1.10.2.min.js"></script>-->
     <script type="text/javascript" src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="<?=BASE_URL?>public/js/public.js"></script>
+    <script type="text/javascript" src="<?=STATIC_PUBLIC?>public/js/public.js"></script>
     <?php if($admin):?>
     <script type="text/javascript" src="<?=BASE_URL?>public/js/ajaxform.js"></script>
     <?php endif; 
@@ -25,9 +25,9 @@
 <body>
 <header class="header">
     <div id="header">
-        <img class="logimg" id="logout" src="<?=BASE_URL?>public/images/logo.png" />
+        <img class="logimg" id="logout" src="<?=STATIC_PUBLIC?>public/images/logo.png" />
         <a href="<?=BASE_URL?>" id="top"><?=$blogtitle?></a>
-        <img class="log2img" name="login" src="<?=BASE_URL?>public/images/logo2.png" />
+        <img class="log2img" name="login" src="<?=STATIC_PUBLIC?>public/images/logo2.png" />
         <div id="nav">
             <ul>
                 <li><a href="<?=BASE_URL?>" title="首页">博客</a></li>

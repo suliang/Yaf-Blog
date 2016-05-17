@@ -380,7 +380,7 @@ ul, ul li {
 .content img{
     float: none;
     margin: 0px auto;
-    max-width: 480px;
+    max-width: 880px;
     display: block;
 
 }
@@ -749,20 +749,19 @@ border-bottom:1.5px solid RGB(188,188,188)
 }
 .lookcount{
 	float:right;
-	margin-right:50px;
-	width:50px;
+	margin-right:70px;
+	width:70px;
 }
 .createtime{
 	float:right;
 	margin-right:30px;
 }
 .blogtype{
-	width:200px;
+	width:150px;
 	font-size:20px;
 }
 .blogtitle{
 	float:left;
-
 	font-size:18px;
 }
 .typelist{

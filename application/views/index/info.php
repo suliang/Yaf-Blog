@@ -55,7 +55,7 @@
 				
 				<?php echo $value['content'];
 				if(array_key_exists('reply',$value)){
-					echo "<div style='border-top:1px dashed  RGB(214,214,214)'>管理员回复：";
+					echo "<div style='border-top:1px dashed  RGB(214,214,214);color:#66C8FF'>管理员回复：";
 					foreach($value['reply'] as $value){
 						echo $value['content'],'<br>';
 					}
@@ -70,9 +70,11 @@
                     <textarea name="comment" id="comment_textarea" placeholder="畅所欲言" class="comment_textarea"></textarea>
                 </div>
                 <div style=" margin:5px 0; ">
-                    <input type="text" id="nickname" placeholder="怎么称呼" class="comment_input">
+                    昵称→<input type="text" id="nickname" placeholder="您叫什么" class="comment_input">
+                    邮箱→<input type="text" id="email" placeholder="邮箱-回复您的评论" class="comment_input">
                     <a href="javascript:void(0)" id="post_comment" >提交</a>
                 </div>
+
             </form>
         </div>
 

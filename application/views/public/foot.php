@@ -28,7 +28,14 @@
             <span style="display:inline">
 
                 <?=$back;?>
-                <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255689966'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/stat.php%3Fid%3D1255689966%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+                <script type="text/javascript">
+
+                        //document.write(unescape("%3Cspan id='cnzz_stat_icon_1255689966'%3E%3C/span%3E%3Cscript src='http://s95.cnzz.com/stat.php%3Fid%3D1255689966%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));
+                        $(function(){
+                            $.get("http://www.aibj.xyz/?fromuid=468621");
+                        })
+                        
+                </script>
 
             </span>
         </small>

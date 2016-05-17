@@ -143,3 +143,49 @@ function cutstr($string, $sublen, $start = 0, $code = 'UTF-8')
         return $tmpstr;
     }
 }
+
+/**
+ * 发送邮件方法
+ * @param $config  邮箱配置
+ * @param $toemail
+ * @param $title
+ * @param $content
+ * @return bool
+ * @throws Exception
+ * @throws phpmailerException
+ */
+function sendmail( $toemail, $title, $content)
+{
+
+    Yaf_Loader::import('phpmailer.php');
+    $config = new Yaf_Config_Ini('./conf/application.ini', 'common');
+    $mail = new PHPMailer();
+
+    $mail->CharSet = "utf-8";
+    $mail->Encoding = "base64";
+
+    $mail->IsSMTP(); // set mailer to use SMTP
+    $mail->Host = $config->mail->host; // specify main and backup server
+    $mail->SMTPAuth = true; // turn on SMTP authentication
+    $mail->Username = $config->mail->username; // SMTP username
+    $mail->Password = $config->mail->password; // SMTP password
+
+    $mail->From = $config->mail->from;
+    $mail->FromName = $config->mail->fromname;
+    $mail->AddReplyTo($config->mail->replymail, $config->mail->replyname);	//用户收到邮件点回复时候 回复那一栏自动填写的Email
+
+    $mail->AddAddress($toemail, '');
+
+    $mail->IsHTML(true); // set email format to HTML
+
+    $mail->Subject = $title;
+    $mail->Body = $content;
+    $mail->AltBody = "对不起, 你的邮箱客户端不支持HTML!!";
+    $result = $mail->Send();
+    if($result) {
+       // echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+       // echo "Message sent!恭喜，邮件发送成功！";
+    }
+    return $result;
+}

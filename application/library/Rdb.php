@@ -184,6 +184,13 @@ class Rdb
 	{
 		return $this->handle->lpush($key, $value);
 	}
+    /**
+     *    rpush
+     */
+    public function rpush($key, $value)
+    {
+        return $this->handle->rpush($key, $value);
+    }
 
 	/**
 	 *    add lpop

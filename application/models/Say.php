@@ -48,7 +48,7 @@ class SayModel
     public function addsay($content,$imgs)
     {
         $this->redis->remove(__CLASS__);
-        $this->db->insert('say',['content'=>$content,'imgs'=>$imgs,'createtime'=>date("Y-m-d H:i:s")]);
+        $this->db->safeinsert('say',['content'=>$content,'imgs'=>$imgs,'createtime'=>date("Y-m-d H:i:s")]);
         return $this->db->insert_id();
     }
 

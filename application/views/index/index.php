@@ -8,8 +8,8 @@
                 <span class="side_title">所属类别</span>
                 <span class="side_title toptitle">博文标题</span>
                 <div class="side_title toplook">
-                    <span>评论/阅读数&nbsp;&nbsp;</span>
-                    <span>&nbsp;&nbsp;发表时间</span>
+                    <span>评论/阅读数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发表时间</span>
 
                 </div>
                 <?php foreach($list as $value):?>
@@ -23,7 +23,7 @@
                         </span>
                     </div>
                     <div class="blogtitle">
-                        <a href="<?=BASE_URL?>index/info/id/<?=$value['id']?>"><span class="blogtitle">&nbsp;<?php if($value['status']==2){echo "<span style='color:deepskyblue'>↑↑↑</span>";}echo $value['title'];?></span></a>
+                        <a href="<?=BASE_URL?>index/info/id/<?=$value['id']?>"><span>&nbsp;<?php if($value['status']==2){echo "<span style='color:deepskyblue'>↑↑↑</span>";}echo $value['title'];?></span></a>
                     </div>
 
                     <div class="createtime">

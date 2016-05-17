@@ -64,10 +64,11 @@ a:active {
 			var value = $(this).prev().prev().val()
 			var type = $(this).attr('data')
 			var blogid = $(this).attr('blogid')
+            var email = $(this).attr('email')
 			
 			$.post(
 				"<?=BASE_URL?>comment/ajax_addupdatecomment",
-				{ "type": type,'id':id,'value':value,'blogid':blogid},
+				{ "type": type,'id':id,'value':value,'blogid':blogid,'email':email},
 				function(data){
 					if(data.status == 1)
 					{ 
@@ -183,7 +184,7 @@ a:active {
 						<input type="text" name="content" style="display:none" value="<?=$value['content']?>">
 						
 						<button class="reply"  style="color:blue">修改</button>
-						<button data="edit" style="display:none" blogid="<?=$value['blogid']?>" name="<?=$value['id']?>" class="submit">提交</button>
+						<button data="edit" style="display:none" blogid="<?=$value['blogid']?>" name="<?=$value['id']?>" email="<?=$value['email']?>" class="submit">提交</button>
 						<button style="display:none" class="cancel">取消</button>
 					<?	
 					}else{
@@ -196,7 +197,7 @@ a:active {
 						?>
 						<input  style="display:none;" class="input" name="<?=$value['id']?>">
 						<button class="reply" style="color:red" type="button">回复</button>
-						<button data="add" blogid="<?=$value['blogid']?>" name="<?=$value['id']?>" style="display:none;" class="submit">提交</button>
+						<button data="add" blogid="<?=$value['blogid']?>" email="<?=$value['email']?>" name="<?=$value['id']?>" style="display:none;" class="submit">提交</button>
 						<button style="display:none;" class="cancel">取消</button>
 					<?php
 						}
