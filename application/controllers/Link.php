@@ -12,6 +12,7 @@ class LinkController extends Yaf_Controller_Abstract {
         if(!loginstatus())
         {
             $this->redirect(BASE_URL);
+            exit;
         }
         $this->linkmodel = new LinkModel();
 	}

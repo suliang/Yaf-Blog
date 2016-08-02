@@ -13,6 +13,7 @@ class CommentController extends Yaf_Controller_Abstract {
         if(!loginstatus() && !in_array($actionname,$this->nologin()))
         {
             $this->redirect(BASE_URL);
+            exit;
         }
 		$this->blogmodel = new BlogModel();
 		$this->commentmodel = new CommentModel();
