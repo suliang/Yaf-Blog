@@ -8,4 +8,4 @@ define('IP',"123.57.52.70");
 $application = new Yaf_Application( APPLICATION_PATH . "/conf/application.ini");
 
 $application->bootstrap()->run();
-?>
+
