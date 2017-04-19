@@ -11,5 +11,10 @@ $hash = hash_hmac($hash_type,$payload,$secret);
 
 if($hash == $hash_value)
 {
+	echo '认证成功，开始更新'."\n\r";
     echo exec("./github_pull.sh");
+}
+else
+{
+	echo "认证失败";
 }
