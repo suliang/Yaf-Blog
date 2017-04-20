@@ -1,3 +1,3 @@
 #!/bin/bash
-git pull origin master 2>&1
+git pull origin master 
 echo "生产环境更新完毕"
