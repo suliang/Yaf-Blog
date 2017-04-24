@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
-<head lang="zh-cn">
+<html lang="zh-CN">
+<head>
     <meta charset="utf-8">
     <title><?=$title?></title>
     <meta name="description" content="<?=$description?>"/>
     <meta name="keywords" content="<?=$keywords?>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
     <script type="text/javascript">
         var BASE_URL = "<?=BASE_URL?>"
         var admin = <?php if($admin){echo 'true';}else{echo 'false';}?>
