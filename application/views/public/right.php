@@ -34,12 +34,10 @@
 
             <div class="side" id="friendlinks">
                 <p class="side_title" style="float: left;">友情链接</p>
-                <a href="<?=BASE_URL?>index/link"  class="side-for-more">申请友链 》》</a>
+
                 <div class="clear"></div>
                 <ul class="links">
-                    <?php foreach($links as $value):?>
-                        <li ><a href="<?=$value['url']?>" class="links_li" target="_blank"><?=$value['title']?></a></li>
-                    <?php endforeach;?>
+
                 </ul>
             </div>
         </div>
