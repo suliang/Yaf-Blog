@@ -68,19 +68,6 @@ $(function() {
 
 
 
-
-    //关闭说说大图片
-    $(".popbackground,#sayimgfloorBox").click(function(){
-        $('#sayimgfloorBox').fadeOut('slow',function(){
-            $("#sayimgfloor").hide();
-			$(".innerpopbox:last").empty()
-			$("#sayimgfloorBox a").remove()
-        });
-    })
-
-
-
-	
 	$(".reply_the_comment").on('click',function(){
 		var floorid = $(this).parent().prev().text()
 		$('html,body').animate({scrollTop:$('#commentform').offset().top}, 1000);
@@ -112,7 +99,7 @@ $(function() {
 				if(data.status == 1)
 				{
 					newfloor = parseInt(lastfloor) + parseInt(1)
-					$("#commentform").before("<div class='commentlist' style='border-bottom:1.5px solid RGB(188,188,188)'><div><span name='floor'>"+newfloor+"</span> 楼  就在刚才</div>"+content+"</div>")
+					$("#commentform").before("<div class='col-md-12' style='border-bottom: 1px solid gainsboro;'><div class='row text-muted' style='padding: 5px;'><span class='floor' name='floor'>"+newfloor+"</span> 楼  评论时间：就在刚才 </div> "+content+" </div>")
 				    $("#comment_textarea").val("")
                 }
 				else
@@ -186,38 +173,25 @@ $(function() {
 		} 
 	})
 
+    //关闭说说大图片
+    $(".popbackground,#sayimgfloorBox").click(function(){
+        $('#sayimgfloorBox').fadeOut('slow',function(){
+            $("#sayimgfloor").hide();
+            $(".innerpopbox:last").empty()
+            $("#sayimgfloorBox a").remove()
+        });
+    })
 	//显示说说图片
     $(".sayimg").click( function(){
 		var url = $(this).attr('info')
 		var trueurl = $(this).attr('data')
-		$(".innerpopbox:last").before("<a style='margin-left:50px;font-size:24px;background-color:RGB(219,233,233);' target='_blank' href='"+trueurl+"'>查看原图</a>")
-		$(".innerpopbox:last").append("<img src="+url+">")	
-		
-        $("#sayimgfloor").fadeIn('slow');
-        var _w = $('#sayimgfloorBox').width();
-        var _h = $('#sayimgfloorBox').height();
-        // 获取定位值
-        var left = ($('body').width() - _w)/2 ;
-        var top  = ($(window).height()-_h)/2;
-        // 添加弹窗样式与动画效果（出现）
-        $('.loginBox').css({
-            position:'fixed',
-            left:left + "px",
-            top:top + "px",
-            zIndex:998
-        }).fadeIn("slow");
+
+        $('#sayimage').modal('show')
+		$("#sayimage a").attr('href',trueurl)
+		$("#sayimage img").attr("src",url)
     })
 
 	
-	//发表说说的按钮宽度
-	var textareawidth = $("#comment_textarea").width()
-	var length = textareawidth/2 - 3
-	$("#upfile").css("width",length+"px") 
-	$("#sendsay").css("width",length+"px")
-	var saytitlewidth = ($("#header").width()-400)/2
-	$("#saytitle").css("margin-left",saytitlewidth+"px")
-
-
 	$("#addlink").on('click',function(){
 		var title = $("#sitetitle").val()
 		var url = $("#siteurl").val()
