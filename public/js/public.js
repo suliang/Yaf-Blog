@@ -1,160 +1,75 @@
 $(function() {
-    //手机浏览器
-    if($(window).width()<=1000){
-        $("#nav").remove();
-        $("header").remove();
-        $("footer").remove();
-        $("#content").css({"padding-top":"0"});
-        $(".copyright").find("small").css({"padding-top": "25px","display":"block","line-height":"25px"});
-        //文章图片的大小修改
-        $("img").css("max-width",($(".content").width() -10));
-        $(".link_postdate").css({"clear":"both","float":"left"});
-        $(".link_view").css({"float":"left"});
-        $(".article_manage").remove();
-        $("#side").remove();
-        $(".blogtype").remove();
-        $(".createtime").remove();
-        $(".lookcount").remove();
-        $(".side_title").remove();
-        $(".toptitle").remove();
-        $(".toplook").remove();
-        $(".infotype").remove();
 
-        $(".list_view").css('line-height','128px')
-        $(".blogtitle").css("font-size",'64px')
-        $("#wrap").css("width",'100%')
-        $("#wrap").css('padding','0px')
-        $("#main").css("width","100%")
-        $(".pages").css('font-size','36px')
-        $("h1").before("<a style='color:blue;' href='"+BASE_URL+"'><h1>回首页</h1></a>");
-    }
-    else
-    {
-        //电脑浏览器
-        $(".pages").css('font-size','15px')
-    	//$("#content").css("min-height",800);//为了footer贴边
-    	$("body").css("min-width",900)
-    	$("header").css("min-width",900)
-    }
-
-	//当分辨率比较低的时候 去掉program.cat 不然管理员模式会溢出
-    var width = $(window).width();
-	if(width<=1601){
-		$("#top2").remove()
-	}
-	if($("#blog").height()<=521){
-		$("#blog").height(521)
-	}
-	var commentwidth = $("#blog").width()-21;
-	$("#comment").width(commentwidth)
-	var saywidth = $("#header").width()-252;
-	$("#say").width(saywidth)
-	var saycontentwidth = $(".commentlist").width()-150
-	$(".saycontent").width(saycontentwidth)
-
-    $(".blogtitle").each(function(){
-        var blogtitlewidth = $(this).width()
-
-        var atitle = $(this).prev().width();
-        var ctime = $(this).next().width();
-        var lcoult = $(this).next().next().width();
-        var pwidth = $(this).parent().width();
-        var shengyu = pwidth-lcoult-ctime-atitle;
-        var limitwidth = shengyu-blogtitlewidth;
-        var tmlwidth = shengyu-111;
-        if(limitwidth < 111)
-        {
-            $(this).attr("style",'white-space:nowrap;text-overflow:ellipsis;overflow:hidden;-webkit-text-overflow:ellipsis;width:'+tmlwidth+'px;')
-        }
-
-    })
-	
-    //修复手机浏览器下顶部不贴边
-    $(document).bind('scroll',function(){
-        $("#header").css("top","0");
-    })
-    //控制台隐藏
-    $("a[name='consoleHide']").click( function(){
-        var ele = $(this);
-        if(parseInt($("#console").css("right"))>0){
-            $("#console").animate({
-                right:"-96px"
-            },function(){
-                ele.text("《《").removeClass('xx').addClass('showConsole');
-            });
-        }else{
-            $("#console").animate({
-                right:"16px"
-            },function(){
-                ele.removeClass('showConsole').addClass('xx').text("X");
-            });
-        }
-    });
-
-    //顶部效果 CSS3
-    $(window).scroll(function() {
-        if($(window).scrollTop() <= 90){
-            $(".header").removeClass("public-transparency");
-            $("#header").removeClass("small-header");
-        }else{
-            $(".header").addClass("public-transparency");
-            $("#header").addClass("small-header");
-        }
-    })
-
-    //footer吸底效果
-    var _wh = $(window).height();           //浏览器完整窗口高度
-    var heightr = _wh-205
-    $(".main").css("min-height",heightr+"px")
-
-    //ajax登录
-    //显示登录框
-    $("img[name='login']").click( function(){
-
-        $("#login").fadeIn('slow');
-        var _w = $('#loginBox').width();
-        var _h = $('#loginBox').height();
-        // 获取定位值
-        var left = ($('body').width() - _w)/2 ;
-        var top  = ($(window).height()-_h)/2;
-        // 添加弹窗样式与动画效果（出现）
-        $('.loginBox').css({
-            position:'fixed',
-            left:left + "px",
-            top:top + "px",
-            zIndex:998
-        }).fadeIn("slow");
-    })
-    
-
-    $(".loginActive").click(function(){
+	//登录
+    $("#loginpost").click(function(){
         loginpost();
     });
-    $("input[name='password']").bind('keydown', function(e) {
+    $("#password").bind('keydown', function(e) {
         var key = e.which;
         if(key == 13) {
             loginpost();
         }
     });
+    function loginpost()
+    {
+        var password = $("#password").val()
+        $.post(
+            BASE_URL+"admin/login",
+            { "password": password },
+            function(data){
+                if(data.status == 1)
+                {
+                    location.reload()
+                }
+                else
+                {
+                    $('#login_page').modal('hide')
+                }
+            },
+            "json"
+        );
+    }
+    //显示管理员后台链接
+    if(admin)
+    {
+        $(".admin").attr('class','admin show');
+    }
+    else
+    {
+        $(".admin").attr('class','admin hidden');
+
+    }
+    //登出
+    $("#logout").on('click',function(){
+        $.get(
+            BASE_URL+"admin/logout",
+            function(){
+                location.reload()
+            }
+        );
+    })
+
+
+
 
     //回车搜索
-    $("input[name='word']").bind('keydown', function(e) {
+    $("#word").bind('keydown', function(e) {
         var key = e.which;
         if(key == 13) {
-            var word = $(".side-search").val()
-            
+            var word = $("#word").val()
             window.location.href=BASE_URL+"index/search/word/"+word;
         }
     });
-
-    //返回操作
-    $(".closeLoginBox").click(function(){
-        $('.loginBox').fadeOut('slow',function(){
-            $("#login").hide();
-        });
+	//搜索
+    $("#search").on('click',function(){
+        var word = $("#word").val()
+        window.location.href=BASE_URL+"index/search/word/"+word;
     })
-	
-	//关闭说说大图片
+
+
+
+
+    //关闭说说大图片
     $(".popbackground,#sayimgfloorBox").click(function(){
         $('#sayimgfloorBox').fadeOut('slow',function(){
             $("#sayimgfloor").hide();
@@ -163,34 +78,8 @@ $(function() {
         });
     })
 
-    //回到顶部
-	var $backToTopTxt = "返回顶部", $backToTopEle = $('<div class="backToTop"></div>').appendTo($("#footer"))
-		.text($backToTopTxt).attr("title", $backToTopTxt).click(function() {
-			$("html, body").animate({ scrollTop: 0 }, 120);
-	}), $backToTopFun = function() {
-		var st = $(document).scrollTop(), winh = $(window).height();
-		(st > 100)? $backToTopEle.show(): $backToTopEle.hide();	
-		//IE6下的定位
-		if (!window.XMLHttpRequest) {
-			$backToTopEle.css("top", st + winh - 166);	
-		}
-	};
-	$(window).bind("scroll", $backToTopFun);
-	$(function() { $backToTopFun(); });
 
-    if(admin)
-    {
-      $(".admin").show();  
-    }
 
-    $("#logout").on('click',function(){
-        $.get(
-        	BASE_URL+"admin/logout",
-			function(){
-				location.reload()
-			}
-		);
-    })
 	
 	$(".reply_the_comment").on('click',function(){
 		var floorid = $(this).parent().prev().text()
@@ -201,15 +90,14 @@ $(function() {
 	
 	$("#post_comment").on('click',function(){
 		var content = $("#comment_textarea").val()
-		var nickname = $("#nickname").val()
         var email = $("#email").val()
 		var blogid = $("#blogid").val()
 		var lastfloor = $(".floor:last").text()
 		if(!lastfloor)
 			lastfloor = 0;
-		if(!content || !nickname)
+		if(!content )
 		{
-			alert('内容和昵称不能为空')
+			alert('内容不能为空')
 			return false;
 		}
         if(!email || email.indexOf('@') < 0)
@@ -219,12 +107,12 @@ $(function() {
         }
 		$.post(
 			BASE_URL+"comment/ajax_addcomment", 
-			{ "blogid": blogid, "content":content, "nickname":nickname, "email":email },
+			{ "blogid": blogid, "content":content, "nickname":'test', "email":email },
 			function(data){
 				if(data.status == 1)
 				{
 					newfloor = parseInt(lastfloor) + parseInt(1)
-					$("form").before("<div class='commentlist' style='border-bottom:1.5px solid RGB(188,188,188)'><div><span name='floor'>"+newfloor+"</span> 楼 "+nickname+" 就在刚才</div>"+content+"</div>")
+					$("form").before("<div class='commentlist' style='border-bottom:1.5px solid RGB(188,188,188)'><div><span name='floor'>"+newfloor+"</span> 楼  就在刚才</div>"+content+"</div>")
 				    $("#comment_textarea").val("")
 				    $("#nickname").val("")
                 }
@@ -360,25 +248,7 @@ $(function() {
 	})
 });
 
-function loginpost()
-{
-    var password = $("input[name='password']").val()
-    $.post(
-        BASE_URL+"admin/login", 
-        { "password": password },
-        function(data){
-            if(data.status == 1)
-            {
-                location.reload()
-            }
-            else
-            {
-                $("#login").hide();
-            }
-        }, 
-        "json"
-    );
-}
+
 function sky_upfiles(nowid){
 	$("#upimgsay").ajaxSubmit({
 		dataType:'json',
