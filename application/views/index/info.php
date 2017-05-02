@@ -57,7 +57,7 @@
                                 <div style="float:right"><a href="javascript:void(0)" class="reply_the_comment">回复</a></div>
                             </div>
                             <?php
-                            echo $value['nickname'],' : ',$value['content'];
+                            echo $value['content'];
                             if(array_key_exists('reply',$value))
                             {
                                 echo "<div class='text-primary' style='border-top:1px dashed RGB(214,214,214);padding: 5px'>管理员回复：";
@@ -74,10 +74,8 @@
                         <form name="comment" id="commentform">
                             <div style=" margin-top: 10px;">
                                 <input type="hidden" id="blogid" value="<?=$blog['id']?>">
-                                <textarea name="comment" id="comment_textarea" placeholder="请发表您的评论" class="form-control"></textarea>
-                            </div>
-                            <div style=" margin-top: 10px;">
-                                <input type="text" id="email" placeholder="请输入您的邮箱，便于作者回复后通知您" class="form-control">
+                                内容：<textarea name="comment" id="comment_textarea" placeholder="请发表您的评论" class="form-control"></textarea>
+                                邮箱：<input type="text" id="email" placeholder="请输入您的邮箱，便于作者回复后通知您" class="form-control">
                                 <button type="button" class="btn btn-primary" id="post_comment">发表</button>
                             </div>
 

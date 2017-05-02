@@ -78,7 +78,6 @@ CREATE TABLE `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `blogid` int(11) DEFAULT NULL,
   `content` varchar(240) DEFAULT '',
-  `nickname` char(24) DEFAULT '',
   `createtime` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `replyid` int(11) DEFAULT '0' COMMENT '-1 已被回复 0 未被回复 >0 回复的那个id',
   PRIMARY KEY (`id`),

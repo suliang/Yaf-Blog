@@ -107,14 +107,13 @@ $(function() {
         }
 		$.post(
 			BASE_URL+"comment/ajax_addcomment", 
-			{ "blogid": blogid, "content":content, "nickname":'test', "email":email },
+			{ "blogid": blogid, "content":content, "email":email },
 			function(data){
 				if(data.status == 1)
 				{
 					newfloor = parseInt(lastfloor) + parseInt(1)
-					$("form").before("<div class='commentlist' style='border-bottom:1.5px solid RGB(188,188,188)'><div><span name='floor'>"+newfloor+"</span> 楼  就在刚才</div>"+content+"</div>")
+					$("#commentform").before("<div class='commentlist' style='border-bottom:1.5px solid RGB(188,188,188)'><div><span name='floor'>"+newfloor+"</span> 楼  就在刚才</div>"+content+"</div>")
 				    $("#comment_textarea").val("")
-				    $("#nickname").val("")
                 }
 				else
 				{

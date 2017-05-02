@@ -141,14 +141,12 @@ class CommentController extends Yaf_Controller_Abstract {
         {
             $blogid = (int)$this->getRequest()->getpost("blogid");
             $content = $this->getRequest()->getpost("content");
-            $nickname = $this->getRequest()->getpost("nickname");
             $email = $this->getRequest()->getpost("email");
 
-            if($blogid >= 0 && $content && $nickname)
+            if($blogid >= 0 && $content)
             {
                 $content = htmlspecialchars($content);
-                $nickname = htmlspecialchars($nickname);
-                $result = $this->commentmodel->addcomment($content,$blogid,0,$email,$nickname);
+                $result = $this->commentmodel->addcomment($content,$blogid,0,$email);
                 if($result)
                 {
                     $data = array('status'=>1,'info'=>array('content'=>'成功'));

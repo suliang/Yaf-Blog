@@ -81,18 +81,20 @@ class CommentModel
         return $this->db->get_one($sql,'c');
     }
 
-    public function addcomment($content,$blogid,$replyid = 0,$email = '',$nickname = '')
+    public function addcomment($content,$blogid,$replyid = 0,$email = '')
     {
         $this->redis->remove(__CLASS__);
-        if(!$nickname)
+        if(!$email)
         {
+            //管理员回复
             $this->db->update('comment',['replyid'=>-1],'id = '.$replyid);
             $data = ['replyid'=>$replyid,'content'=>$content,'blogid'=>$blogid];
             return $this->db->insert('comment',$data);
         }
         else
         {
-            $data = ['replyid'=>$replyid,'content'=>$content,'nickname'=>$nickname,'email'=>$email,'blogid'=>$blogid];
+            //游客在详情页发评论
+            $data = ['replyid'=>$replyid,'content'=>$content,'email'=>$email,'blogid'=>$blogid];
             return $this->db->safeinsert('comment',$data);
         }
 
