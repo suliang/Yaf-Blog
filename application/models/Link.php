@@ -56,4 +56,23 @@ class LinkModel
         $this->redis->remove(__CLASS__);
         return $this->db->delete('link','id = '.$id);
     }
+
+    /**
+     * 新申请友情链接通知博主
+     * 放进待发送邮件的redis队列
+     * @param $name
+     * @param $url
+     */
+    public function push_link_email_list($name,$url)
+    {
+        if($name && $url)
+        {
+            $title = "有新的友情链接申请^_^";
+            $content = "<br />链接URL:{$url}<br /><br /><a href='".$url."'>{$name}</a>";
+            $config = new Yaf_Config_Ini('./conf/application.ini', 'common');
+            $email = $config->mail->replyemail;
+            $this->commentmodel = new CommentModel();
+            $this->commentmodel->push_mail_list($email,$title,$content);
+        }
+    }
 }

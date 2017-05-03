@@ -135,7 +135,8 @@ class IndexController extends Yaf_Controller_Abstract {
 
     /**
      * 搜索
-     * @param string $word
+     * @param  $word string
+     * @return bool
      */
     public function searchAction($word = '')
     {
@@ -188,6 +189,8 @@ class IndexController extends Yaf_Controller_Abstract {
         $result = $this->linkmodel->linkadd($title,$url);
         if($result)
         {
+            $this->linkmodel->push_link_email_list($title,$url);
+
             $data = array('status'=>1,'info'=>array('content'=>'申请成功，请等待站长添加'));
         }
         else
@@ -205,35 +208,7 @@ class IndexController extends Yaf_Controller_Abstract {
      */
     public function catAction()
     {
-
-        $blog = $this->blogmodel->bloginfo(1);
-
-        $arr = array();
-        $commentlist = $this->commentmodel->blogcomments(1);
-        foreach($commentlist as $value)
-        {
-            if( $value['replyid'] <=0 )
-            {
-                $arr[$value['id']] = $value;
-            }
-            else
-            {
-                $arr[$value['replyid']]['reply'][] = $value;
-            }
-        }
-        $this->blogmodel->setlook(1);
-        $blogtype = $this->blogtypemodel->getblogtype($blog['type']);
-        $blogtag = $this->tagmodel->blogtotags(1);
-        $commentnums = $this->commentmodel->countcomment(1);
-        $blog['look'] = $blog['look'] + $this->blogmodel->getlook(1);
-        $this->rightpublic();
-
-        $this->getView()->assign("commentnums", $commentnums);
-        $this->getView()->assign("blogtype", $blogtype);
-        $this->getView()->assign("blogtag", $blogtag);
-        $this->getView()->assign("comments", $arr);
-        $this->getView()->assign("blog", $blog);
-        $this->display('info');
+        $this->redirect(BASE_URL.'index/info/id/1');
         return false;
     }
 
