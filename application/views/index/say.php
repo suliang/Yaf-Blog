@@ -21,7 +21,7 @@
             <br />
             <?php foreach($list as $value):?>
                 <div class="commentlist" style="margin-bottom: 10px;border-bottom: solid 1px beige">
-                    <p><?=$value['content']?></p>
+                    <h4><?=$value['content']?></h4>
                     <?php if($value['imgs']):?>
                         <div class="sayimgs">
                             <?php foreach(json_decode($value['imgs'],true) as $v){?>
@@ -34,7 +34,7 @@
             <?php endforeach;?>
 
         </div>
-        <div class="row">
+        <div class="col-md-12">
             <div class="center-block text-center pages"><?=$page?></div>
         </div>
     </div>
