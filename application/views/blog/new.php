@@ -1,112 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head lang="zh-cn">
-    <meta charset="utf-8">
-    <script type="text/javascript">
-        var BASE_URL = "<?=BASE_URL?>"
-        var admin = <?php if($admin){echo 'true';}else{echo 'false';}?>
-    </script>
-    <link rel="stylesheet" href="<?=BASE_URL?>public/css/public.css" type="text/css">
-	<script type="text/javascript" src="<?=BASE_URL?>public/js/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="<?=BASE_URL?>public/js/public.js"></script>
-    <script type="text/javascript" charset="utf-8" src="<?=BASE_URL;?>public/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="<?=BASE_URL;?>public/ueditor/ueditor.all.min.js"> </script>
-    <script type="text/javascript" charset="utf-8" src="<?=BASE_URL;?>public/ueditor/lang/zh-cn/zh-cn.js"></script>
-
-</head>
-<body>
-<header class="header">
-    <div id="header">
-        <img class="logimg" id="logout" src="<?=BASE_URL?>public/images/logo.png" />
-        <a href="<?=BASE_URL?>" id="top">程序喵的厨房</a>
-        <img class="log2img" name="login" src="<?=BASE_URL?>public/images/logo2.png" />
-        <div id="nav">
-            <ul>
-                <li><a href="<?=BASE_URL?>" title="首页">博客</a></li>
-                <li><a href="<?=BASE_URL?>say" title="碎片">碎片</a></li>
-				<li><a href="<?=BASE_URL?>" title="关于喵~">关于喵~</a></li>
-
-                <li class="admin"><a href="<?=BASE_URL?>blog/new" title="写博客">写博客</a></li>
-                <li class="admin"><a href="<?=BASE_URL?>admin/index" title="后台">后台</a></li>
-            </ul>
+<?php require_once('./application/views/public/head.php');?>
+<script type="text/javascript" charset="utf-8" src="<?=BASE_URL;?>public/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="<?=BASE_URL;?>public/ueditor/ueditor.all.min.js"> </script>
+<script type="text/javascript" charset="utf-8" src="<?=BASE_URL;?>public/ueditor/lang/zh-cn/zh-cn.js"></script>
+<div class="col-md-12 " style="background-color: white;">
+    <div id="blog">
+        <div>
+            <div style="height:30px;font-size:20px;">
+                <span>标题：</span><input style="height:25px;width:400px;font-size:20px;" id="title" type="text" name="title" >
+            </div>
+            <script id="editor" type="text/plain"></script>
         </div>
-
-        <a href="http://www.programcat.com/" id="top2">ProgramCat.com</a>
-        <div class="clear"></div>
-    </div>
-</header>
-
-<div id="content">
-
-    <div id="wrap">
-		<div>
-			<div style="height:30px;font-size:20px;">
-			<span>标题：</span><input style="height:25px;width:400px;font-size:20px;" id="title" type="text" name="title" >
-			</div>
-			<script id="editor" type="text/plain"></script>
-		</div>
         <div style="height:26px;padding: 10px;">
 			<span style="padding:6px;">
 			类型选择：<select style="width:130px;" id="type">
 					<?php foreach($types as $key => $value):?>
-						<option value="<?=$key?>"><?=$value['name']?></option>
+                        <option value="<?=$key?>"><?=$value['name']?></option>
 						<?php if(array_key_exists('child',$value)){
-							foreach($value['child'] as $k=>$v)
-							{
-								?>
-								<option value="<?=$k?>"><?php echo $value['name'],'--->',$v?></option>
-							<?php
-							}
-						}?>
-					<?php endforeach;?>
+                            foreach($value['child'] as $k=>$v)
+                            {
+                                ?>
+                                <option value="<?=$k?>"><?php echo $value['name'],'--->',$v?></option>
+                                <?php
+                            }
+                        }?>
+                    <?php endforeach;?>
 				</select>
-			<button type="button" name="addfutype" class="addtype">添加父类型</button>
-			<button type="button" name="addzitype" class="addtype">添加子类型</button>
+			<button type="button" name="addfutype" class="addtype btn btn-primary">添加父类型</button>
+			<button type="button" name="addzitype" class="addtype btn btn-primary">添加子类型</button>
 
 			<span class="addfutype" style="display:none">
 			父类型<input style="width:100px;" type="text" id="futype">
-			<button type="button" id="addfutype">增加</button>
+			<button type="button" id="addfutype" class="btn btn-primary">增加</button>
 			</span>
 
 			<span class="addzitype" style="display:none">
 			子类型
 			<select style="width:100px;" id="futypes">
 				<?php foreach($types as $key => $value):?>
-					<option value="<?=$key?>"><?=$value['name']?></option>
-				<?php endforeach;?>
+                    <option value="<?=$key?>"><?=$value['name']?></option>
+                <?php endforeach;?>
 			</select>
 
 			<input style="width:100px;" type="text" id="zitype">
-			<button type="button" id="addzitype">增加</button>
+			<button type="button" class="btn" id="addzitype">增加</button>
 			</span>
 
 			&nbsp;&nbsp;
 			<span>
 				当前标签<input type="text" id="tags" style="width: 200px;">
 				热门标签
-				<?php foreach($hottags as $value):?>
-					<button type="button" class="button"><?=$value?></button>
-				<?php endforeach;?>
+                <?php foreach($hottags as $value):?>
+                    <button type="button" class="button btn btn-primary"><?=$value?></button>
+                <?php endforeach;?>
 			</span>
 			</span>
-		</div>
-    <div style="margin-top:2px;">
-        <button type="button" id="submit" style="width:100px;height:30px;">发表</button>
-        <button type="button" id="caogao" style="width:100px;height:30px;">存草稿</button>
-    </div>
-        <div class="clear"></div>
+        </div>
+        <div style="margin-top:20px;">
+            <button type="button" class="btn btn-primary" id="submit">发表</button>
+            <button type="button" class="btn btn-primary" id="caogao">存草稿</button>
+        </div>
     </div>
 </div>
-<div class="clear"></div>
-<footer id="footer">
-    <div class="clear"></div>
-    <div class="copyright">
-        <small>
 
-        </small>
-    </div>
-    <div class="messageBox"></div>
-</footer>
 <script type="text/javascript">
 
 	//实例化编辑器
@@ -115,9 +70,9 @@
 
         
         var frameheight = $(window).height();
-		var width = $("#header").width()
+		var width = $("#blog").width()
 		
-        var ue = UE.getEditor('editor',{initialFrameWidth:width+48,initialFrameHeight:frameheight-198,autoHeightEnabled:false});
+        var ue = UE.getEditor('editor',{initialFrameWidth:width,initialFrameHeight:frameheight,autoHeightEnabled:false});
 
 
         $(".addtype").on('click',function(){
