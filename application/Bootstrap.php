@@ -11,7 +11,6 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
     public function _initConfig() {
 		//把配置保存起来
 		$this->arrConfig = Yaf_Application::app()->getConfig();
-
 		Yaf_Registry::set('config', $this->arrConfig);
 	}
 
@@ -32,6 +31,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
         $db_config['password'] = $this->arrConfig->db->password;
         $db_config['database'] = $this->arrConfig->db->database;
         $db_config['log']      = $this->arrConfig->db->log;
+        $db_config['logfilepath']      = $this->arrConfig->db->logfilepath;
 
         Yaf_Registry::set('db', new Db($db_config));
     }

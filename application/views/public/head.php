@@ -20,7 +20,7 @@
     <?php if($admin):?>
     <script type="text/javascript" src="<?=BASE_URL?>public/js/ajaxform.js"></script>
     <?php endif;
-    if($codecss):?>
+    if(isset($codecss)):?>
     <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" src="<?=BASE_URL?>public/js/prism.js"></script>
     <link rel="stylesheet" href="<?=BASE_URL?>public/css/prism.css" type="text/css">

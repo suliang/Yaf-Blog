@@ -241,6 +241,10 @@ class IndexController extends Yaf_Controller_Abstract {
         {
             $this->getView()->assign("admin", true);
         }
+        else
+        {
+            $this->getView()->assign("admin", false);
+        }
         $this->getView()->assign("links", $links);
         $this->getView()->assign("tags", $tags);
         $this->getView()->assign("types", $types);
