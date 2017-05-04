@@ -219,6 +219,13 @@ $(function() {
 			"json"
 		);
 	})
+
+	//点击博客的图片新页面打开大图
+	$(".content img").on('click',function(){
+		var imgurl = $(this).attr('src')
+        window.open(imgurl);
+
+	})
 });
 
 
