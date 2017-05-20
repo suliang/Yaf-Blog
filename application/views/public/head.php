@@ -26,11 +26,6 @@
     <link rel="stylesheet" href="<?=BASE_URL?>public/css/prism.css" type="text/css">
     <?php endif;?>
 
-    <script>
-
-
-    </script>
-
 </head>
 <body>
     <header>
@@ -48,7 +43,7 @@
                         </a>
                         <a class="navbar-brand" href="<?=BASE_URL?>">程序喵的厨房</a>
                         <a class="navbar-brand" id="login" data-toggle="modal" data-target="#login_page">
-                            <img alt="Brand" style="width:53px;height:35px;margin-top:-8px;" src="<?=STATIC_PUBLIC?>public/images/logo2.png">
+                            <img alt="Brand" style="width:53px;height:35px;margin-top:-8px;" class="hidden-xs hidden-sm" src="<?=STATIC_PUBLIC?>public/images/logo2.png">
                         </a>
                     </div>
 
