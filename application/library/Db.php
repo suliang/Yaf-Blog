@@ -102,7 +102,7 @@ Class Db
 		}
 		while (list($key, $val) = each($dataArray))
 		{
-			$field .= "$key,";
+			$field .= "`$key`,";
 			$value .= "'$val',";
 		}
 		$field = substr($field, 0, -1);
@@ -133,7 +133,7 @@ Class Db
 		{
 			$nowtype = is_string($val)?'s':'i';
 			$paramarr[] = $val;
-			$field .= "$key,";
+			$field .= "`$key`,";
 			$safeparam .= "?,";
 			$paramsnum++;
 			$params .= $nowtype;         //之过滤字符串，int字形不用过滤
